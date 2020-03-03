@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Latihan10</string>
+    <string name="imageView_Main_Header">Header Background</string>
+    <string name="button_Main_Switch">Switch</string>
+    <string name="textView_Main_Judul">Program Menghitung Persegi</string>
+    <string name="textView_Main_Panjang">Panjang</string>
+    <string name="textView_Main_Lebar">Lebar</string>
+    <string name="button_Main_Submit">Submit</string>
+    <string name="nilai_Awal">0</string>
+    <string name="hasil">Hasil</string>
+</resources>
