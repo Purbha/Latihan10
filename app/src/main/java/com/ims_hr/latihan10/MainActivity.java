@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Nilai_Panjang = progress;
-                TV_Panjang.setText(String.valueOf(SB_Panjang.getProgress()));
+                TV_Panjang.setText(String.valueOf(Nilai_Panjang));
+                //TV_Panjang.setText(String.valueOf(SB_Panjang.getProgress()));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -113,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Nilai_Lebar = progress;
-                TV_Lebar.setText(String.valueOf(SB_Lebar.getProgress()));
+                TV_Lebar.setText(String.valueOf(progress));
+                //TV_Lebar.setText(String.valueOf(SB_Lebar.getProgress()));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
