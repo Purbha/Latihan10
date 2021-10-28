@@ -1,11 +1,9 @@
 package com.ims_hr.latihan10;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -14,15 +12,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     ImageView IV_Header;
-    Button B_Switch;
-    Button B_Submit;
-    private int Indeks = 1;
-    private int Nilai_Panjang = 0;
-    private int Nilai_Lebar = 0;
-    SeekBar SB_Panjang;
-    SeekBar SB_Lebar;
-    TextView TV_Panjang;
-    TextView TV_Lebar;
+    Button B_Switch, B_Submit;
+    private int Indeks = 1, Nilai_Panjang = 0, Nilai_Lebar = 0;
+    SeekBar SB_Panjang, SB_Lebar;
+    TextView TV_Panjang, TV_Lebar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,49 +38,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Listen_B_Switch() {
-        B_Switch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Indeks == 1){
-                    IV_Header.setImageResource(R.drawable.bg2);
-                    Indeks++;
-                } else {
-                    IV_Header.setImageResource(R.drawable.bg1);
-                    Indeks--;
-                }
+        B_Switch.setOnClickListener(v -> {
+            if (Indeks == 1){
+                IV_Header.setImageResource(R.drawable.bg2);
+                Indeks++;
+            } else {
+                IV_Header.setImageResource(R.drawable.bg1);
+                Indeks--;
             }
         });
     }
 
     private void Listen_B_Submit() {
-        B_Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final int Nilai_Luas = Nilai_Panjang * Nilai_Lebar;
-                final int Nilai_Kell = 2 * (Nilai_Panjang + Nilai_Lebar);
-                AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
-                a_builder.setMessage("Silakan pilih menghitung Luas atau Keliling:")
-                        .setCancelable(false)
-                        .setPositiveButton("Luas", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(MainActivity.this,LuasActivity.class);
-                                intent.putExtra("luas",Nilai_Luas);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Keliling", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(MainActivity.this,KellActivity.class);
-                                intent.putExtra(KellActivity.KUNCI_KELL,Nilai_Kell);
-                                startActivity(intent);
-                            }
-                        });
-                AlertDialog alert = a_builder.create();
-                alert.setTitle("Konfirmasi");
-                alert.show();
-            }
+        B_Submit.setOnClickListener(v -> {
+            final int Nilai_Luas = Nilai_Panjang * Nilai_Lebar;
+            final int Nilai_Kell = 2 * (Nilai_Panjang + Nilai_Lebar);
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+            a_builder.setMessage("Silakan pilih menghitung Luas atau Keliling:")
+                    .setCancelable(false)
+                    .setPositiveButton("Luas", (dialog, which) -> {
+                        Intent intent = new Intent(MainActivity.this,LuasActivity.class);
+                        intent.putExtra("luas",Nilai_Luas);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("Keliling", (dialog, which) -> {
+                        Intent intent = new Intent(MainActivity.this,KellActivity.class);
+                        intent.putExtra(KellActivity.KUNCI_KELL,Nilai_Kell);
+                        startActivity(intent);
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Konfirmasi");
+            alert.show();
         });
     }
 
